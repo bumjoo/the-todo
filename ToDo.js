@@ -88,7 +88,7 @@ class ToDo extends Component {
                 <Text style={styles.actionText}>✏️</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPressOut={() => {this._deleteToDo(id)}}>
+            <TouchableOpacity onPressOut={(event) => {event.stopPropagation; _deleteToDo(id)}}>
               <View style={styles.actionContainer}>
                 <Text style={styles.actionText}>❌</Text>
               </View>
@@ -98,7 +98,9 @@ class ToDo extends Component {
       </View>
     );
   }
-  _toggleComplete = () => {
+  _toggleComplete = (event) => {
+    event.stopPropagation();
+
     const {id,isCompleted, completeToDo, uncompleteToDo} = this.props;
     if(isCompleted) {
       uncompleteToDo(id);
@@ -117,12 +119,16 @@ class ToDo extends Component {
     //   };
     // });
   };
-  _startEditing = () => {
+  _startEditing = (event) => {
+    event.stopPropagation();
+    
     this.setState({
       isEditing: true
     });
   };
-  _finishEditing = () => {
+  _finishEditing = (event) => {
+    event.stopPropagation();
+    
     this.setState({
       isEditing: false
     });
@@ -169,7 +175,8 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: "600",
     fontSize: 20,
-    marginVertical: 20
+    marginVertical: 20,
+    //borderWidth: 1
   },
   completedText: {
     color: "#bbb",
@@ -194,6 +201,7 @@ const styles = StyleSheet.create({
   input: {
     marginVertical: 15,
     width: width / 2,
+    
     paddingBottom: 5
   }
 });
