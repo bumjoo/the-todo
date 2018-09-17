@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "the-todo",
-    "description": "This project is really great.",
+    "name": "스터디 To Do",
+    "description": "연습 Todo made with RN",
     "slug": "the-todo",
     "privacy": "public",
     "sdkVersion": "30.0.0",
